@@ -1,1 +1,66 @@
-<p>login works!</p>
+<form
+    class="w-75 mx-auto my-5 shadow p-4 rounded"
+    [formGroup]="loginForm"
+    (ngSubmit)="handleForm()"
+>
+    <h2 class="mb-3">Login Now:</h2>
+    <div class="mb-2 form-item">
+        <label for="email">email:</label>
+        <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            id="email"
+        />
+        <div
+            *ngIf="
+                loginForm.get('email')?.errors &&
+                loginForm.get('email')?.touched
+            "
+            class="alert alert-danger"
+            role="alert"
+        >
+            <p *ngIf="loginForm.get('email')?.getError('required')">
+                Hey there! Your email is required. Please provide it!
+            </p>
+            <p *ngIf="loginForm.get('email')?.getError('email')">
+                Oops! That doesn’t look like a valid email. Double-check it.
+            </p>
+        </div>
+    </div>
+    <div class="mb-2 form-item">
+        <label for="password">password:</label>
+        <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+        />
+        <div
+            class="alert alert-danger"
+            *ngIf="
+                loginForm.get('password')?.errors &&
+                loginForm.get('password')?.touched
+            "
+        >
+            <p *ngIf="loginForm.get('password')?.getError('required')">
+                Hey there! password is required. Please provide it!
+            </p>
+            <p *ngIf="loginForm.get('password')?.getError('pattern')">
+                Your password must be at least 6 characters long and can include
+                letters, numbers, underscores, or &commat; Please try again!
+            </p>
+        </div>
+    </div>
+
+    <button
+        [disabled]="loginForm.invalid"
+        class="btn-main mt-2 ms-auto d-block"
+        type="submit"
+    >
+        <i *ngIf="isloading" class="fas fa-spin fa-spinner"></i>
+        Login
+    </button>
+
+    <p *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</p>
+</form>

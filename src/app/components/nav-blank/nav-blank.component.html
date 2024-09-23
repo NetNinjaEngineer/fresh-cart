@@ -1,32 +1,65 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="home">
-            <img src="images/freshcart-logo.svg" alt="">
+            <img src="images/freshcart-logo.svg" alt="" />
         </a>
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="home" routerLinkActive="active-link" aria-current="page">Home</a>
+                    <a
+                        class="nav-link"
+                        routerLink="home"
+                        routerLinkActive="active-link"
+                        aria-current="page"
+                        >Home</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="cart" routerLinkActive="active-link" aria-current="page">Cart</a>
+                    <a
+                        class="nav-link"
+                        routerLink="cart"
+                        routerLinkActive="active-link"
+                        aria-current="page"
+                        >Cart</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="products" routerLinkActive="active-link"
-                        aria-current="page">Products</a>
+                    <a
+                        class="nav-link"
+                        routerLink="products"
+                        routerLinkActive="active-link"
+                        aria-current="page"
+                        >Products</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="categories" routerLinkActive="active-link"
-                        aria-current="page">Categories</a>
+                    <a
+                        class="nav-link"
+                        routerLink="categories"
+                        routerLinkActive="active-link"
+                        aria-current="page"
+                        >Categories</a
+                    >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="brands" routerLinkActive="active-link"
-                        aria-current="page">Brands</a>
+                    <a
+                        class="nav-link"
+                        routerLink="brands"
+                        routerLinkActive="active-link"
+                        aria-current="page"
+                        >Brands</a
+                    >
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -38,8 +71,7 @@
                     <i class="fa-brands fab fa-linkedin"></i>
                     <i class="fa-brands fab fab fa-youtube"></i>
                 </li>
-                <li class="nav-item"> <span role="button">SignOut</span></li>
-
+                <li class="nav-item"><span (click)="signOut()" role="button">SignOut</span></li>
             </ul>
         </div>
     </div>
