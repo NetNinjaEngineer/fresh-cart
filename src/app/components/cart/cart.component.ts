@@ -13,10 +13,11 @@ import { Router, RouterModule } from '@angular/router';
     styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
-    shoppingCart: Cart | null = null;
+    shoppingCart: Cart | null = {} as Cart;
     constructor(private _cartService: CartService, private _router: Router) {}
 
     ngOnInit(): void {
+
         this._cartService.getLoggedInUserCart().subscribe({
             next: (response) => {
                 this.shoppingCart = response;
@@ -60,6 +61,10 @@ export class CartComponent implements OnInit {
         this._cartService.clearUserCart().subscribe({
             next: (response) => {
                 console.log(response);
+                if (response.status == 'success') {
+                    this.shoppingCart = {} as Cart;
+                    this._cartService.setCartNumber(0);
+                }
             },
         });
     }
@@ -68,6 +73,9 @@ export class CartComponent implements OnInit {
         this._cartService.removeProductFromCart(id).subscribe({
             next: (response) => {
                 console.log(response)
+                if (response.status == 'success') {
+                    this.shoppingCart = response;
+                }
             }
         })
     }

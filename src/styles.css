@@ -43,7 +43,7 @@ a:hover {
 .product {
     border-radius: 5px;
     border: solid 1px var(--main-color);
-    transition: box-shadow 0.5s;
+    /* transition: box-shadow 0.5s; */
     overflow: hidden;
 }
 
@@ -90,16 +90,6 @@ a:hover {
 .btn-main:hover {
     background-color: #11bd11;
 }
-
-.loading-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-}
-
-
 
 ::-webkit-scrollbar {
     width: 10px;

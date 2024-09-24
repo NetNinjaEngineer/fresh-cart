@@ -28,15 +28,6 @@
                 <li class="nav-item">
                     <a
                         class="nav-link"
-                        routerLink="cart"
-                        routerLinkActive="active-link"
-                        aria-current="page"
-                        >Cart</a
-                    >
-                </li>
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
                         routerLink="products"
                         routerLinkActive="active-link"
                         aria-current="page"
@@ -63,13 +54,19 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a
+                        class="nav-link position-relative"
+                        routerLink="cart"
+                        >
+                            <i class="fas fa-cart-shopping fa-2x text-main"></i>
+                            <span class="badge bg-info position-absolute top-0 end-0">{{numOfCartItems}}</span>
+                        </a
+                    >
+                </li>
                 <li class="nav-item d-flex align-items-center gap-3 me-3">
-                    <i class="fa-brands fa-instagram"></i>
                     <i class="fa-brands fab fa-facebook"></i>
-                    <i class="fa-brands fab fa-tiktok"></i>
-                    <i class="fa-brands fab fab fa-twitter"></i>
                     <i class="fa-brands fab fa-linkedin"></i>
-                    <i class="fa-brands fab fab fa-youtube"></i>
                 </li>
                 <li class="nav-item"><span (click)="signOut()" role="button">SignOut</span></li>
             </ul>

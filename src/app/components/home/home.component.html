@@ -4,46 +4,69 @@
             <owl-carousel-o [options]="mainSliderOptions">
                 <ng-container>
                     <ng-template carouselSlide>
-                        <img height="400" class="w-100" src="images/main-slider-1.jpeg" alt="">
+                        <img
+                            height="400"
+                            class="w-100"
+                            src="images/main-slider-1.jpeg"
+                            alt=""
+                        />
                     </ng-template>
                     <ng-template carouselSlide>
-                        <img height="400" class="w-100" src="images/main-slider-2.jpeg" alt="">
+                        <img
+                            height="400"
+                            class="w-100"
+                            src="images/main-slider-2.jpeg"
+                            alt=""
+                        />
                     </ng-template>
                     <ng-template carouselSlide>
-                        <img height="400" class="w-100" src="images/main-slider-3.jpeg" alt="">
+                        <img
+                            height="400"
+                            class="w-100"
+                            src="images/main-slider-3.jpeg"
+                            alt=""
+                        />
                     </ng-template>
                 </ng-container>
-
             </owl-carousel-o>
-
         </div>
         <div class="col-md-2">
-            <img height="200" class="w-100" src="images/main-slider-2.jpeg" alt="">
-            <img height="200" class="w-100" src="images/main-slider-3.jpeg" alt="">
+            <img
+                height="200"
+                class="w-100"
+                src="images/main-slider-2.jpeg"
+                alt=""
+            />
+            <img
+                height="200"
+                class="w-100"
+                src="images/main-slider-3.jpeg"
+                alt=""
+            />
         </div>
     </div>
 </section>
 
-
-
 <section class="my-3" *ngIf="categories.length > 0">
     <h2>Shop Popular Categories</h2>
     <owl-carousel-o [options]="categorySliderOptions">
-
         <ng-container *ngFor="let slide of categories">
             <ng-template carouselSlide [id]="slide._id">
-                <img class="w-100" style="height: 275px;" [src]="slide.image" [alt]="slide.name" [title]="slide.name">
-                <h3 class="h5 text-start py-3">{{slide.name}}</h3>
+                <img
+                    class="w-100"
+                    style="height: 275px"
+                    [src]="slide.image"
+                    [alt]="slide.name"
+                    [title]="slide.name"
+                />
+                <h3 class="h5 text-start py-3">{{ slide.name }}</h3>
             </ng-template>
         </ng-container>
-
     </owl-carousel-o>
 </section>
 
-
 <section class="my-4" *ngIf="products.length > 0">
     <h2>Shop Popular Products</h2>
-    <!-- <input class="form-control w-50 mx-auto my-3" type="text" placeholder="Search..." [(ngModel)]="searchTerm"> -->
     <div class="row g-4">
         <div class="col-md-2" *ngFor="let product of products.slice(0, 12) | search:searchTerm ">
             <div class="product p-2">
@@ -52,7 +75,7 @@
                     <h3 class="h3">{{product.category.name | uppercase}}</h3>
                     <h4 class="h6 text-main">{{product.title | trimText:2 }}</h4>
                     <div class="d-flex align-items-center justify-content-between">
-                        <span>{{product.price | currency:'EGP'}}</span>
+                        <span>{{product.price | currency:'EGP '}}</span>
                         <div>
                             <i class="fas fa-star rating-color"></i>
                             <span class="text-muted">{{product.ratingsAverage}}</span>
@@ -60,7 +83,7 @@
                     </div>
                 </div>
 
-                <button (click)="AddToCart(product._id)" class="btn-main w-100">
+                <button #btnAdd (click)="AddToCart(product._id, btnAdd)" class="btn-main w-100">
                     +Add To Cart
                 </button>
             </div>
@@ -68,4 +91,31 @@
         </div>
     </div>
 
+    <!-- <div class="row">
+        <div class="col-md-2 mb-3" *ngFor="let product of products.slice(0, 24)">
+            <div class="card item">
+                <img
+                [src]="product.imageCover"
+                class="card-image-top w-50 mx-auto"
+                [alt]="product.title"/>
+
+                <div [routerLink]="['/details', product._id]" class="card-body cursor-pointer">
+                    <h5 class="card-title">{{ product.category.name }}</h5>
+                    <p class="card-text text-main">
+                        {{ product.title | trimText : 2 }}
+                    </p>
+                    <div class="rating-color">
+                        {{ product.ratingsAverage }} ({{
+                            product.ratingsQuantity
+                        }})
+                    </div>
+                    <div class="price mt-2">
+                        {{ product.price | currency : "EGP" }}
+                    </div>
+                </div>
+                <button #addToCartBtn (click)="AddToCart(product._id, addToCartBtn)" class="btn-main">+Add</button>
+
+            </div>
+        </div>
+    </div> -->
 </section>

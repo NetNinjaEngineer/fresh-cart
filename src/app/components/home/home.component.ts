@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ProductService } from '../../core/service/product.service';
 import { CategoryService } from '../../core/service/category.service';
 import { CartService } from '../../core/service/cart.service';
@@ -83,7 +83,8 @@ export class HomeComponent {
         private _productService: ProductService,
         private _categoryService: CategoryService,
         private _cartService: CartService,
-        private _toasterService: ToastrService
+        private _toasterService: ToastrService,
+        private _renderer2:Renderer2
     ) {}
 
     ngOnDestroy(): void {
@@ -112,17 +113,22 @@ export class HomeComponent {
             });
     }
 
-    AddToCart(productId: string) {
+    AddToCart(productId: string, element: HTMLButtonElement) {
+        this._renderer2.setAttribute(element, 'disabled', 'true');
+
         this._cartService.addProductToCart(productId).subscribe({
             next: (response) => {
                 console.log(response);
                 if (response.status === 'success') {
                     this.isLoading = false;
                     this._toasterService.success(response.message);
+                    this._renderer2.removeAttribute(element, 'disabled');
+                    this._cartService.setCartNumber(response.numOfCartItems);
                 }
             },
             error: (err: HttpErrorResponse) => {
                 console.error(err);
+                this._renderer2.removeAttribute(element, 'disabled');
             },
         });
     }

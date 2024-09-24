@@ -71,22 +71,21 @@ export class ProductDetailsComponent implements OnInit {
         });
     }
 
-    AddToCart(productId: any) {
+    AddToCart(productId: string) {
         this.isLoading = true;
         this._cartService.addProductToCart(productId).subscribe({
             next: (response) => {
                 console.log(response);
                 if (response.status === 'success') {
-                    this.isLoading = false;
                     this._toasterService.success(response.message);
+                    this._cartService.setCartNumber(response.numOfCartItems);
+                    this.isLoading = false;
                     this._router.navigate(['/cart']);
                 }
             },
             error: (err: HttpErrorResponse) => {
+                console.error(err);
                 this.isLoading = false;
-                this._toasterService.error(
-                    'Failed to add product to cart. Please try again later.'
-                );
             },
         });
     }

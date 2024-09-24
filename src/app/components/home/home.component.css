@@ -1,3 +1,27 @@
+.card {
+    overflow: hidden;
+}
+
+.card .btn-main {
+    transform: translateY(150%);
+    transition: transform 0.7s;
+}
+
+.card:hover .btn-main {
+    transform: translateY(0);
+}
+
+.card:hover {
+    border-color: #0aad0a;
+    box-shadow: 0 0 10px #11bd1138;
+}
+
+
+.card-title {
+    font-weight: bold;
+    font-size: .9rem;
+}
+
 .product .btn-main {
     transform: translateY(150%);
     transition: transform 0.7s;
@@ -5,9 +29,4 @@
 
 .product:hover .btn-main {
     transform: translateY(0);
-}
-
-section.my-4 {
-    position: relative;
-    min-height: 100px;
 }
