@@ -9,7 +9,7 @@
         rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
         rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
     --font-family: "Encode Sans Expanded", sans-serif;
-    --rating-color: #ffc908;
+    --rating-color: #f0c425;
 }
 
 body {
@@ -97,4 +97,27 @@ a:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 2rem;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--light-color);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
+
+.form-control {
+    border-color: #24af24b4 !important;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(125, 214, 95, 0.603);
 }

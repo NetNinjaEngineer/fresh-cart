@@ -18,7 +18,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ProductDetailsComponent implements OnInit {
     isLoading: boolean = false;
     productId: any;
-    currentProduct?: Product;
+    currentProduct: Product | null = null;
 
     productSliderOptions: OwlOptions = {
         loop: true,

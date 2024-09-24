@@ -30,4 +30,8 @@ export class CartService {
             count: count,
         });
     }
+
+    clearUserCart(): Observable<any> {
+        return this._client.delete(this._baseUrl)
+    }
 }

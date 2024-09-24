@@ -45,6 +45,8 @@ export class HomeComponent {
         navSpeed: 700,
         navText: ['', ''],
         autoplay: true,
+        autoplaySpeed: 1000,
+        autoplayTimeout: 2000,
         responsive: {
             0: {
                 items: 1,
@@ -71,6 +73,8 @@ export class HomeComponent {
         navSpeed: 700,
         navText: ['', ''],
         autoplay: true,
+        autoplaySpeed: 1000,
+        autoplayTimeout: 3000,
         items: 1,
         nav: false,
     };

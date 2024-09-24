@@ -18,4 +18,13 @@ import { CommonModule } from '@angular/common';
 })
 export class BlankLayoutComponent {
 
+
+    goToUp() {
+        window.scrollTo({
+            behavior: 'smooth',
+            top: 0,
+
+        })
+    }
+
 }
