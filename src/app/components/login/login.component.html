@@ -53,14 +53,19 @@
         </div>
     </div>
 
-    <button
+    <div class="d-flex align-items-center justify-content-between">
+        <button
         [disabled]="loginForm.invalid"
-        class="btn-main mt-2 ms-auto d-block"
+        class="btn-main mt-2"
         type="submit"
     >
         <i *ngIf="isloading" class="fas fa-spin fa-spinner"></i>
         Login
     </button>
+
+    <a routerLink="/forget-password" class="text-main">Forget password ?!</a>
+
+    </div>
 
     <p *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</p>
 </form>

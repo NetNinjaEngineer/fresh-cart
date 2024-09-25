@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { tokenInterceptor } from './token.interceptor';
+import { tokenInterceptor } from './core/interceptors/token.interceptor';
 
 @NgModule({
     declarations: [

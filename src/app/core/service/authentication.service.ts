@@ -6,6 +6,9 @@ import { LoginRequest } from '../interfaces/loginRequest';
 import { AuthResponse } from '../interfaces/authResponse';
 import { Router } from '@angular/router';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
+import { ForgetPasswordRequest } from '../interfaces/forgetPasswordRequest';
+import { ResetCodeRequest } from '../interfaces/resetCodeRequest';
+import { ResetPasswordRequest } from '../interfaces/resetPasswordRequest';
 
 @Injectable({
     providedIn: 'root',
@@ -58,5 +61,18 @@ export class AuthenticationService {
         }
 
         return null;
+    }
+
+
+    forgetPassword(forgetPasswordRequest: ForgetPasswordRequest): Observable<any> {
+        return this._client.post(`${this._baseUrl}/forgotPasswords`, forgetPasswordRequest);
+    }
+
+    resetCode(resetCodeRequest: ResetCodeRequest): Observable<any> {
+        return this._client.post(`${this._baseUrl}/verifyResetCode`, resetCodeRequest);
+    }
+
+    resetPassword(resetPasswordRequest: ResetPasswordRequest): Observable<any> {
+        return this._client.put(`${this._baseUrl}/resetPassword`, resetPasswordRequest);
     }
 }

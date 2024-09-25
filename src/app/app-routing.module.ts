@@ -74,7 +74,7 @@ const routes: Routes = [
                         (m) => m.AllOrdersComponent
                     ),
                 title: 'All Orders',
-            },
+            }
         ],
     },
     {
@@ -101,6 +101,9 @@ const routes: Routes = [
                     ),
                 title: 'Register',
             },
+            {
+                path: 'forget-password', loadComponent: () => import('./components/forget-password/forget-password.component').then(m => m.ForgetPasswordComponent), title: 'Forget Password'
+            }
         ],
     },
     {
@@ -117,4 +120,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top py-2">
+<nav
+    appScroll
+    class="navbar navbar-expand-sm navbar-light bg-light fixed-top py-2"
+>
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="home">
             <img src="images/freshcart-logo.svg" alt="" />
@@ -59,18 +62,25 @@
                         <a
                             class="nav-link position-relative"
                             routerLink="/cart"
-                            >
-                                <i class="fas fa-cart-shopping fa-2x text-main"></i>
-                                <span class="badge bg-info position-absolute top-0 end-0">{{numOfCartItems}}</span>
-                            </a
                         >
+                            <i class="fas fa-cart-shopping fa-2x text-main"></i>
+                            <span
+                                class="badge bg-info position-absolute top-0 end-0"
+                                >{{ numOfCartItems }}</span
+                            >
+                        </a>
                     </li>
+
                     <li class="nav-item d-flex align-items-center gap-3 me-3">
-                        <i class="fa-brands fab fa-facebook fa-lg"></i>
-                        <i class="fa-brands fab fa-linkedin fa-lg"></i>
+                        <i
+                            class="fa-brands fab fa-facebook fa-lg cursor-pointer"
+                        ></i>
+                        <i
+                            class="fa-brands fab fa-linkedin fa-lg cursor-pointer"
+                        ></i>
                     </li>
                     <li class="nav-item">
-                        <span (click)="signOut()">SignOut</span>
+                        <span role="button" (click)="signOut()">SignOut</span>
                     </li>
                 </div>
             </ul>

@@ -9,13 +9,13 @@ import {
 import { AuthenticationService } from '../../core/service/authentication.service';
 import { LoginRequest } from '../../core/interfaces/loginRequest';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
 })

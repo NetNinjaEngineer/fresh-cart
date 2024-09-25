@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthenticationService } from '../../core/service/authentication.service';
 import { CartService } from '../../core/service/cart.service';
+import { ScrollDirective } from '../../core/directives/scroll.directive';
 
 @Component({
     selector: 'app-nav-blank',
     standalone: true,
-    imports: [RouterModule],
+    imports: [RouterModule, ScrollDirective],
     templateUrl: './nav-blank.component.html',
     styleUrl: './nav-blank.component.css',
 })
