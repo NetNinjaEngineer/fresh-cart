@@ -9,12 +9,13 @@ import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { ForgetPasswordRequest } from '../interfaces/forgetPasswordRequest';
 import { ResetCodeRequest } from '../interfaces/resetCodeRequest';
 import { ResetPasswordRequest } from '../interfaces/resetPasswordRequest';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthenticationService {
-    private _baseUrl: string = 'https://ecommerce.routemisr.com/api/v1/auth';
+    private _baseUrl: string = `${environment.baseApiUrl}/api/v1/auth`;
 
     constructor(
         private _client: HttpClient,

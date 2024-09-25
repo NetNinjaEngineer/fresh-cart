@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from './authentication.service';
 import { ShippingAddress } from '../interfaces/shippingAddress';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OrderService {
-    private _baseUrl: string = 'https://ecommerce.routemisr.com/api/v1/orders';
+    private _baseUrl: string = `${environment.baseApiUrl}/api/v1/orders`;
+    private _clientUrl: string = environment.clientUrl;
 
     constructor(
-        private _client: HttpClient,
-        private _authenticationService: AuthenticationService
+        private _client: HttpClient
     ) {}
 
     createOnlineOrder(
@@ -20,7 +20,7 @@ export class OrderService {
         shippingAddress: ShippingAddress
     ): Observable<any> {
         return this._client.post(
-            `${this._baseUrl}/checkout-session/${cartId}?url=http://localhost:4200`,
+            `${this._baseUrl}/checkout-session/${cartId}?url=${this._clientUrl}`,
             shippingAddress
         );
     }
