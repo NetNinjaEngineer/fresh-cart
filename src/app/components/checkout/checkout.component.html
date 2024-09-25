@@ -1,1 +1,25 @@
-<p>checkout works!</p>
+<section class="w-50 mx-auto mt-4">
+    <h2><b>Checkout</b></h2>
+    <form [formGroup]="checkoutForm">
+        <div class="mb-3">
+            <label for="details">Details</label>
+            <textarea formControlName="details" id="details" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="city">City</label>
+            <input type="text" formControlName="city" id="city" class="form-control" >
+            <div *ngIf="checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched">
+                <p class="text-danger" *ngIf="checkoutForm.get('city')?.getError('required')">City field is required.</p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="phone">Phone</label>
+            <input type="tel" formControlName="phone" id="phone" class="form-control">
+            <div *ngIf="checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched">
+                <p class="text-danger" *ngIf="checkoutForm.get('phone')?.getError('required')">Phone field is required.</p>
+                <p class="text-danger" *ngIf="checkoutForm.get('phone')?.getError('pattern')">Egypt Numbers Only.</p>
+            </div>
+        </div>
+        <button (click)="handleForm()" class="btn-sm btn-main">Place Order</button>
+    </form>
+</section>

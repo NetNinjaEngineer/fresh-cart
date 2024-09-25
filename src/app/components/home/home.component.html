@@ -68,7 +68,7 @@
 <section class="my-4" *ngIf="products.length > 0">
     <h2>Shop Popular Products</h2>
     <div class="row g-4">
-        <div class="col-md-2" *ngFor="let product of products.slice(0, 12) | search:searchTerm ">
+        <div class="col-md-2" *ngFor="let product of products.slice(0, 18) | search:searchTerm ">
             <div class="product p-2">
                 <div [routerLink]="['/details', product._id]" class="cursor-pointer">
                     <img [src]="product.imageCover" class="w-100" alt="">

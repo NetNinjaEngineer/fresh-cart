@@ -79,7 +79,7 @@
                                         | currency : "EGP "
                                 }}</span>
                             </p>
-                            <button
+                            <button [routerLink]="['/checkout', shoppingCart.cartId]"
                                 class="btn-main summary-btn d-flex justify-content-between align-items-center"
                             >
                                 <span class="text-bold">Go to Checkout</span>

@@ -59,6 +59,22 @@ const routes: Routes = [
                         './components/product-details/product-details.component'
                     ).then((m) => m.ProductDetailsComponent),
             },
+            {
+                path: 'checkout/:id',
+                loadComponent: () =>
+                    import('./components/checkout/checkout.component').then(
+                        (m) => m.CheckoutComponent
+                    ),
+                title: 'checkout',
+            },
+            {
+                path: 'allorders',
+                loadComponent: () =>
+                    import('./components/all-orders/all-orders.component').then(
+                        (m) => m.AllOrdersComponent
+                    ),
+                title: 'All Orders',
+            },
         ],
     },
     {

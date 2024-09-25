@@ -15,7 +15,7 @@ export class OrderService {
         private _authenticationService: AuthenticationService
     ) {}
 
-    createCashOrder(
+    createOnlineOrder(
         cartId: string | null,
         shippingAddress: ShippingAddress
     ): Observable<any> {

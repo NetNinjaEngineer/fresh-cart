@@ -10,11 +10,12 @@ export class ProductService {
         'https://ecommerce.routemisr.com/api/v1/products';
     constructor(private _client: HttpClient) {}
 
-    getAllProducts(): Observable<any> {
-        return this._client.get<any>(this._baseUrl);
+    getAllProducts(pageNumber: number = 1, limit: number = 40): Observable<any> {
+        return this._client.get<any>(`${this._baseUrl}?page=${pageNumber}&limit=${limit}`);
     }
 
     getSpecificProduct(id: string): Observable<any> {
         return this._client.get<any>(`${this._baseUrl}/${id}`);
     }
+
 }
