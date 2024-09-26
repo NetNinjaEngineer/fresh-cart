@@ -5,23 +5,23 @@ import { ShippingAddress } from '../interfaces/shippingAddress';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-    providedIn: 'root',
+   providedIn: 'root',
 })
 export class OrderService {
-    private _baseUrl: string = `${environment.baseApiUrl}/api/v1/orders`;
-    private _clientUrl: string = environment.clientUrl;
+   private _baseUrl: string = `${environment.baseApiUrl}/api/v1/orders`;
+   private _clientUrl: string = environment.clientUrl;
 
-    constructor(
-        private _client: HttpClient
-    ) {}
+   constructor(
+      private _client: HttpClient
+   ) { }
 
-    createOnlineOrder(
-        cartId: string | null,
-        shippingAddress: ShippingAddress
-    ): Observable<any> {
-        return this._client.post(
-            `${this._baseUrl}/checkout-session/${cartId}?url=${this._clientUrl}`,
-            shippingAddress
-        );
-    }
+   createOnlineOrder(
+      cartId: string | null,
+      shippingAddress: ShippingAddress
+   ): Observable<any> {
+      return this._client.post(
+         `${this._baseUrl}/checkout-session/${cartId}?url=${this._clientUrl}`,
+         shippingAddress
+      );
+   }
 }

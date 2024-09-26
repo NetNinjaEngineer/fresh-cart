@@ -1,147 +1,140 @@
 <form
-    class="w-75 mx-auto my-5 shadow p-4 rounded"
-    [formGroup]="registerForm"
-    (ngSubmit)="handleForm()"
+   class="w-75 mx-auto my-5 p-4"
+   [formGroup]="registerForm"
+   (ngSubmit)="handleForm()"
 >
-    <h2 class="mb-3">Register Now:</h2>
-    <div class="mb-2 form-item">
-        <label for="name">name:</label>
-        <input
-            formControlName="name"
-            type="text"
-            class="form-control"
-            id="name"
-        />
+   <h2 class="mb-3 text-main">Register Now :</h2>
+   <div class="mb-2 form-item">
+      <label for="name" class="mb-2">name:</label>
+      <input
+         formControlName="name"
+         type="text"
+         class="form-control"
+         id="name"
+      />
 
-        <div
-            *ngIf="
-                registerForm.get('name')?.errors &&
-                registerForm.get('name')?.touched
-            "
-            class="alert alert-danger"
-            role="alert"
-        >
-            <p *ngIf="registerForm.get('name')?.getError('required')">
-                Please enter your name. It’s required!
-            </p>
-            <p *ngIf="registerForm.get('name')?.getError('minlength')">
-                Oops! Your name must be at least 3 characters long. Please try
-                again!
-            </p>
-            <p *ngIf="registerForm.get('name')?.getError('maxlength')">
-                Whoa there! Your name must not exceed 20 characters. Shorten it
-                a bit!
-            </p>
-        </div>
-    </div>
-    <div class="mb-2 form-item">
-        <label for="email">email:</label>
-        <input
-            formControlName="email"
-            type="email"
-            class="form-control"
-            id="email"
-        />
-        <div
-            *ngIf="
-                registerForm.get('email')?.errors &&
-                registerForm.get('email')?.touched
-            "
-            class="alert alert-danger"
-            role="alert"
-        >
-            <p *ngIf="registerForm.get('email')?.getError('required')">
-                Hey there! Your email is required. Please provide it!
-            </p>
-            <p *ngIf="registerForm.get('email')?.getError('email')">
-                Oops! That doesn’t look like a valid email. Double-check it.
-            </p>
-        </div>
-    </div>
-    <div class="mb-2 form-item">
-        <label for="password">password:</label>
-        <input
-            formControlName="password"
-            type="password"
-            class="form-control"
-            id="password"
-        />
-        <div
-            class="alert alert-danger"
-            *ngIf="
-                registerForm.get('password')?.errors &&
-                registerForm.get('password')?.touched
-            "
-        >
-            <p *ngIf="registerForm.get('password')?.getError('required')">
-                Hey there! password is required. Please provide it!
-            </p>
-            <p *ngIf="registerForm.get('password')?.getError('pattern')">
-                Your password must be at least 6 characters long and can include
-                letters, numbers, underscores, or &commat; Please try again!
-            </p>
-        </div>
-    </div>
-    <div class="mb-2 form-item">
-        <label for="rePassword">rePassword:</label>
-        <input
-            formControlName="rePassword"
-            type="password"
-            class="form-control"
-            id="rePassword"
-        />
-        <div
-            class="alert alert-danger"
-            *ngIf="
-                registerForm.get('rePassword')?.errors &&
-                registerForm.get('rePassword')?.touched
-            "
-        >
-            <p *ngIf="registerForm.get('rePassword')?.getError('required')">
-                Hey there! rePassword is required. Please provide it!
-            </p>
-            <p *ngIf="registerForm.get('rePassword')?.getError('mismatch')">
-                The passwords do not match. Please ensure they are identical!
-            </p>
-        </div>
-    </div>
-    <div class="mb-2 form-item">
-        <label for="phone">phone:</label>
-        <input
-            formControlName="phone"
-            type="tel"
-            class="form-control"
-            id="phone"
-        />
-        <div
-            class="alert alert-danger"
-            *ngIf="
-                registerForm.get('phone')?.errors &&
-                registerForm.get('phone')?.touched
-            "
-        >
-            <p *ngIf="registerForm.get('phone')?.getError('required')">
-                Hey there! phone is required. Please provide it!
-            </p>
-            <p *ngIf="registerForm.get('phone')?.getError('pattern')">
-                Oops! Egypt Numbers Only. Check it out!
-            </p>
-        </div>
-    </div>
+      <div class="mt-2"
+         *ngIf="
+            registerForm.get('name')?.errors &&
+            registerForm.get('name')?.touched
+         "
+      >
+         <p  class="text-danger"  *ngIf="registerForm.get('name')?.getError('required')">
+            Please enter your name. It’s required!
+         </p>
+         <p  class="text-danger" *ngIf="registerForm.get('name')?.getError('minlength')">
+            Oops! Your name must be at least 3 characters long. Please try
+            again!
+         </p>
+         <p class="text-danger"  *ngIf="registerForm.get('name')?.getError('maxlength')">
+            Whoa there! Your name must not exceed 20 characters. Shorten it a
+            bit!
+         </p>
+      </div>
+   </div>
+   <div class="mb-2 form-item">
+      <label for="email" class="mb-2">email:</label>
+      <input
+         formControlName="email"
+         type="email"
+         class="form-control"
+         id="email"
+      />
+      <div class="mt-2"
+         *ngIf="
+            registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched
+         "
+      >
+         <p class="text-danger" *ngIf="registerForm.get('email')?.getError('required')">
+            Hey there! Your email is required. Please provide it!
+         </p>
+         <p class="text-danger" *ngIf="registerForm.get('email')?.getError('email')">
+            Oops! That doesn’t look like a valid email. Double-check it.
+         </p>
+      </div>
+   </div>
+   <div class="mb-2 form-item">
+      <label for="password" class="mb-2">password:</label>
+      <input
+         formControlName="password"
+         type="password"
+         class="form-control"
+         id="password"
+      />
+      <div class="mt-2"
+         *ngIf="
+            registerForm.get('password')?.errors &&
+            registerForm.get('password')?.touched
+         "
+      >
+         <p class="text-danger" *ngIf="registerForm.get('password')?.getError('required')">
+            Hey there! password is required. Please provide it!
+         </p>
+         <p class="text-danger" *ngIf="registerForm.get('password')?.getError('pattern')">
+            Your password must be at least 6 characters long and can include
+            letters, numbers, underscores, or &commat; Please try again!
+         </p>
+      </div>
+   </div>
+   <div class="mb-2 form-item">
+      <label for="rePassword" class="mb-2">rePassword:</label>
+      <input
+         formControlName="rePassword"
+         type="password"
+         class="form-control"
+         id="rePassword"
+      />
+      <div class="mt-2"
+         *ngIf="
+            registerForm.get('rePassword')?.errors &&
+            registerForm.get('rePassword')?.touched
+         "
+      >
+         <p class="text-danger" *ngIf="registerForm.get('rePassword')?.getError('required')">
+            Hey there! rePassword is required. Please provide it!
+         </p>
+         <p class="text-danger" *ngIf="registerForm.get('rePassword')?.getError('mismatch')">
+            The passwords do not match. Please ensure they are identical!
+         </p>
+      </div>
+   </div>
+   <div class="mb-2 form-item">
+      <label for="phone" class="mb-2">phone:</label>
+      <input
+         formControlName="phone"
+         type="tel"
+         class="form-control"
+         id="phone"
+      />
+      <div class="mt-2"
+         *ngIf="
+            registerForm.get('phone')?.errors &&
+            registerForm.get('phone')?.touched
+         "
+      >
+         <p class="text-danger" *ngIf="registerForm.get('phone')?.getError('required')">
+            Hey there! phone is required. Please provide it!
+         </p>
+         <p class="text-danger" *ngIf="registerForm.get('phone')?.getError('pattern')">
+            Oops! Egypt Numbers Only. Check it out!
+         </p>
+      </div>
+   </div>
 
-    <button
-        [disabled]="registerForm.invalid"
-        class="btn-main mt-2 ms-auto d-block"
-        type="submit"
-    >
-        Register
-        <i *ngIf="isloading" class="fas fa fa-spin fa-spinner"></i>
-    </button>
+   <button
+      [disabled]="registerForm.invalid"
+      class="btn-main mt-2 ms-auto d-block"
+      type="submit"
+   >
+      Register
+      <i *ngIf="isloading" class="fas fa fa-spin fa-spinner"></i>
+   </button>
 
-    <p
-        *ngIf="errorMessage.length > 0"
-        class="alert alert-danger p-1 w-50 mx-auto mb-0 text-center"
-    >
-        {{ errorMessage }}
-    </p>
+   <p
+      *ngIf="errorMessage.length > 0"
+      class="text-danger p-1 w-50 mx-auto mb-0 text-center"
+   >
+      {{ errorMessage }}
+   </p>
 </form>

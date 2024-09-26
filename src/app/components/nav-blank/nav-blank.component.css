@@ -1,3 +1,26 @@
 nav {
-    transition: padding 1s;
+   transition: padding 1s;
+}
+
+.cartIcon {
+   background-color: #17ce17;
+   color: white;
+   border-radius: 50%;
+   width: 25px;
+   height: 25px;
+   text-align: center;
+   position: absolute;
+   top: -6px;
+   right: 0;
+}
+
+.fa-cart-shopping {
+   font-size: 30px;
+   color: #11b8118e;
+}
+
+
+
+.shop-cart-item {
+   position: relative;
 }

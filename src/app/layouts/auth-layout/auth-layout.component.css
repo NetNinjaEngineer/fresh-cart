@@ -1,5 +1,9 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+
+.container {
+   background-image: url('/images/light-patten.svg');
 }

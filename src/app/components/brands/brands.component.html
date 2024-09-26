@@ -1,1 +1,48 @@
-<p>brands works!</p>
+<section *ngIf="brands && brands.length > 0">
+   <h3 class="text-center mt-4 mb-3 text-main" >  Shop By Brands</h3>
+   <div class="row">
+      <div
+         class="col-md-3"
+         *ngFor="
+            let item of brands
+               | paginate
+                  : {
+                       id: 'brandsPaginate',
+                       itemsPerPage: pageSize,
+                       currentPage: currentPage,
+                       totalItems: total
+                    }
+         "
+      >
+         <div class="card mb-3 brand cursor-pointer" [routerLink]="['/products', item._id]">
+            <div class="card-body">
+               <img
+                  [src]="item.image"
+                  height="200px"
+                  class="card-img-top"
+                  [alt]="item.name"
+               />
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="d-flex justify-content-center mt-4">
+      <pagination-controls
+         id="brandsPaginate"
+         (pageChange)="pageChanged($event)"
+         (pageBoundsCorrection)="pageChanged($event)"
+         [maxSize]="9"
+         [directionLinks]="true"
+         [autoHide]="true"
+         [responsive]="true"
+         previousLabel="Previous"
+         nextLabel="Next"
+         screenReaderPaginationLabel="Pagination"
+         screenReaderPageLabel="page"
+         screenReaderCurrentLabel="You're on page"
+      >
+      </pagination-controls>
+   </div>
+
+</section>

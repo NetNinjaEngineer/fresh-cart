@@ -1,3 +1,23 @@
 :host {
-    margin-top: auto;
+   margin-top: auto;
+}
+
+footer {
+   padding: 40px 0px;
+}
+
+.payment-image {
+   width: 60px;
+   margin-left: 10px;
+}
+
+.badge-icon {
+   width: 115px;
+   margin-left: 10px;
+   height: 35px;
+}
+
+.pay-title {
+   font-size: 13px;
+   font-weight: 600;
 }

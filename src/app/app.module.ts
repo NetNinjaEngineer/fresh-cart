@@ -11,21 +11,21 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        ToastrModule.forRoot(),
-        NgxSpinnerModule
-    ],
-    providers: [
-        provideHttpClient(
-            withInterceptors([tokenInterceptor, loadingInterceptor])
-        )
-    ],
-    bootstrap: [AppComponent]
+   declarations: [
+      AppComponent
+   ],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      ToastrModule.forRoot(),
+      NgxSpinnerModule
+   ],
+   providers: [
+      provideHttpClient(
+         withInterceptors([tokenInterceptor])
+      )
+   ],
+   bootstrap: [AppComponent]
 })
 export class AppModule { }

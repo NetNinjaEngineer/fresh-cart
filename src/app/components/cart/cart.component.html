@@ -1,130 +1,129 @@
 <div class="container">
-    <section *ngIf=" shoppingCart && shoppingCart.numOfCartItems > 0; else message">
-        <header>
-            <div class="d-flex justify-content-between align-items-center ">
-                <h2><b>Your Shop Cart ({{shoppingCart.numOfCartItems}}) </b></h2>
-                <button class="btn btn-sm btn-outline-danger" (click)="clearCart()" >Clear Cart</button>
-            </div>
-        </header>
-        <main>
-            <div class="row">
-                <div class="col-md-8">
-                    <div *ngFor="let cartItem of shoppingCart.data.products">
-                        <div class="cart-item">
-                            <div
-                                class="row d-flex align-items-center justify-content-center"
-                            >
-                                <div class="col-md-1">
-                                    <img
-                                        [src]="cartItem.product.imageCover"
-                                        [alt]="cartItem.product.title"
-                                        class="w-100"
-                                    />
-                                </div>
-                                <div class="col-md-7">
-                                    <p class="bold">
-                                        {{
-                                            cartItem.product.title
-                                                | trimText : 2
-                                        }}
-                                    </p>
-                                    <button (click)="removeFromCart(cartItem.product._id)" class="rm-btn text-muted py-1">
-                                        <i
-                                            class="fa-regular fa-trash-can text-main"
-                                        ></i>
-                                        Remove
-                                    </button>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="d-flex align-items-center">
-                                        <button
-                                            [disabled]="
-                                                disableDecrement(counter)
-                                            "
-                                            (click)="onDecrement(counter)"
-                                            class="minus"
-                                        >
-                                            -
-                                        </button>
-                                        <span [id]="cartItem.product._id" #counter class="counter">{{
-                                            cartItem.count
-                                        }}</span>
-                                        <button
-                                            (click)="onIncrement(counter)"
-                                            class="plus"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <span class="text-main price-bold">
-                                        {{ cartItem.price | currency : "EGP " }}
-                                    </span>
-                                </div>
-                            </div>
+   <section
+      *ngIf="shoppingCart && shoppingCart.numOfCartItems > 0"
+   >
+      <header>
+         <div class="d-flex justify-content-between align-items-center">
+            <h2>
+               <b>Your Shop Cart ({{ shoppingCart.numOfCartItems }}) </b>
+            </h2>
+            <button class="btn btn-sm btn-outline-danger" (click)="clearCart()">
+               Clear Cart
+            </button>
+         </div>
+      </header>
+      <main>
+         <div class="row">
+            <div class="col-md-8">
+               <div *ngFor="let cartItem of shoppingCart.data.products">
+                  <div class="cart-item">
+                     <div
+                        class="row d-flex align-items-center justify-content-center"
+                     >
+                        <div class="col-md-1">
+                           <img
+                              [src]="cartItem.product.imageCover"
+                              [alt]="cartItem.product.title"
+                              class="w-100"
+                           />
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="summary">
-                            <h5><b>Summary</b></h5>
-                            <p
-                                class="total d-flex align-items-center justify-content-between"
-                            >
-                                <span>Subtotal</span>
-                                <span class="text-main">{{
-                                    shoppingCart.data.totalCartPrice
-                                        | currency : "EGP "
-                                }}</span>
-                            </p>
-                            <button [routerLink]="['/checkout', shoppingCart.cartId]"
-                                class="btn-main summary-btn d-flex justify-content-between align-items-center"
-                            >
-                                <span class="text-bold">Go to Checkout</span>
-                                <span class="text-bold">{{
-                                    shoppingCart.data.totalCartPrice
-                                        | currency : "EGP "
-                                }}</span>
-                            </button>
-                            <p class="terms">
-                                By placing your order, you agree to be bound by
-                                the Freshcart
-                                <span class="text-main special"
-                                    >Terms of Service</span
-                                >
-                                and
-                                <span class="text-main special">
-                                    Privacy Policy</span
-                                >
-                                .
-                            </p>
+                        <div class="col-md-7">
+                           <p class="bold">
+                              {{ cartItem.product.title | trimText : 2 }}
+                           </p>
+                           <button
+                              (click)="removeFromCart(cartItem.product._id)"
+                              class="rm-btn text-muted py-1"
+                           >
+                              <i class="fa-regular fa-trash-can text-main"></i>
+                              Remove
+                           </button>
                         </div>
-                    </div>
-                </div>
+                        <div class="col-md-2">
+                           <div class="d-flex align-items-center">
+                              <button
+                                 [disabled]="disableDecrement(counter)"
+                                 (click)="onDecrement(counter)"
+                                 class="minus"
+                              >
+                                 -
+                              </button>
+                              <span
+                                 [id]="cartItem.product._id"
+                                 #counter
+                                 class="counter"
+                                 >{{ cartItem.count }}</span
+                              >
+                              <button
+                                 (click)="onIncrement(counter)"
+                                 class="plus"
+                              >
+                                 +
+                              </button>
+                           </div>
+                        </div>
+                        <div class="col-md-2">
+                           <span class="text-main price-bold">
+                              {{ cartItem.price | currency : "EGP " }}
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="row py-3">
-                <div class="col-md-8">
-                    <div
-                        class="d-flex align-items-center justify-content-between"
-                    >
-                        <button
-                            (click)="continueShopping()"
-                            class="btn-main rounded text-bold"
-                        >
-                            Continue Shopping
-                        </button>
+            <div class="col-md-4">
+               <div class="row">
+                  <div class="summary">
+                     <h5><b>Summary</b></h5>
+                     <p
+                        class="total d-flex align-items-center justify-content-between"
+                     >
+                        <span>Subtotal</span>
+                        <span class="text-main">{{
+                           shoppingCart.data.totalCartPrice | currency : "EGP "
+                        }}</span>
+                     </p>
+                     <button
+                        [routerLink]="['/checkout', shoppingCart.cartId]"
+                        class="btn-main summary-btn d-flex justify-content-between align-items-center"
+                     >
+                        <span class="text-bold">Go to Checkout</span>
+                        <span class="text-bold">{{
+                           shoppingCart.data.totalCartPrice | currency : "EGP "
+                        }}</span>
+                     </button>
+                     <p class="terms">
+                        By placing your order, you agree to be bound by the
+                        Freshcart
+                        <span class="text-main special">Terms of Service</span>
+                        and
+                        <span class="text-main special"> Privacy Policy</span>
+                        .
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row py-3">
+            <div class="col-md-8">
+               <div class="d-flex align-items-center justify-content-between">
+                  <button
+                     (click)="continueShopping()"
+                     class="btn-main rounded text-bold"
+                  >
+                     Continue Shopping
+                  </button>
 
-                        <button (click)="updateCart()" class="btn btn-dark">Update Quantities</button>
-                    </div>
-                </div>
+                  <button (click)="updateCart()" class="btn btn-dark">
+                     Update Quantities
+                  </button>
+               </div>
             </div>
-        </main>
-    </section>
+         </div>
+      </main>
+   </section>
 </div>
 
-
-<ng-template #message>
-    <h2 class="text-center">Your Cart Is Empty...</h2>
-</ng-template>
+<ng-container *ngIf="shoppingCart?.numOfCartItems == 0">
+   <h2 class="text-center">Your Cart Is Empty...</h2>
+</ng-container>

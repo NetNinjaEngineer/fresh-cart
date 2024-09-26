@@ -12,68 +12,68 @@ import { ResetPasswordRequest } from '../interfaces/resetPasswordRequest';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-    providedIn: 'root',
+   providedIn: 'root',
 })
 export class AuthenticationService {
-    private _baseUrl: string = `${environment.baseApiUrl}/api/v1/auth`;
+   private _baseUrl: string = `${environment.baseApiUrl}/api/v1/auth`;
 
-    constructor(
-        private _client: HttpClient,
-        private _router: Router) { }
+   constructor(
+      private _client: HttpClient,
+      private _router: Router) { }
 
-    register(registerRequest: RegisterRequest): Observable<AuthResponse> {
-        return this._client.post<AuthResponse>(
-            `${this._baseUrl}/signup`,
-            registerRequest,
-            {
-                headers: {
-                    Accept: 'application/json',
-                },
-            }
-        );
-    }
+   register(registerRequest: RegisterRequest): Observable<AuthResponse> {
+      return this._client.post<AuthResponse>(
+         `${this._baseUrl}/signup`,
+         registerRequest,
+         {
+            headers: {
+               Accept: 'application/json',
+            },
+         }
+      );
+   }
 
-    login(loginRequest: LoginRequest): Observable<AuthResponse> {
-        return this._client.post<AuthResponse>(
-            `${this._baseUrl}/signin`,
-            loginRequest,
-            {
-                headers: {
-                    Accept: 'application/json',
-                },
-            }
-        );
-    }
+   login(loginRequest: LoginRequest): Observable<AuthResponse> {
+      return this._client.post<AuthResponse>(
+         `${this._baseUrl}/signin`,
+         loginRequest,
+         {
+            headers: {
+               Accept: 'application/json',
+            },
+         }
+      );
+   }
 
-    saveUserToken(token: string): void {
-        localStorage.setItem('token', token);
-    }
+   saveUserToken(token: string): void {
+      localStorage.setItem('token', token);
+   }
 
-    signOut(): void {
-        localStorage.removeItem('token');
-        this._router.navigate(['/login']);
-    }
+   signOut(): void {
+      localStorage.removeItem('token');
+      this._router.navigate(['/login']);
+   }
 
-    getCurrentUserInfo(): JwtPayload | null {
-        const token: any = localStorage.getItem('token');
-        if (token != null) {
-            const decodedToken: JwtPayload = jwtDecode(token);
-            return decodedToken;
-        }
+   getCurrentUserInfo(): JwtPayload | null {
+      const token: any = localStorage.getItem('token');
+      if (token != null) {
+         const decodedToken: JwtPayload = jwtDecode(token);
+         return decodedToken;
+      }
 
-        return null;
-    }
+      return null;
+   }
 
 
-    forgetPassword(forgetPasswordRequest: ForgetPasswordRequest): Observable<any> {
-        return this._client.post(`${this._baseUrl}/forgotPasswords`, forgetPasswordRequest);
-    }
+   forgetPassword(forgetPasswordRequest: ForgetPasswordRequest): Observable<any> {
+      return this._client.post(`${this._baseUrl}/forgotPasswords`, forgetPasswordRequest);
+   }
 
-    resetCode(resetCodeRequest: ResetCodeRequest): Observable<any> {
-        return this._client.post(`${this._baseUrl}/verifyResetCode`, resetCodeRequest);
-    }
+   resetCode(resetCodeRequest: ResetCodeRequest): Observable<any> {
+      return this._client.post(`${this._baseUrl}/verifyResetCode`, resetCodeRequest);
+   }
 
-    resetPassword(resetPasswordRequest: ResetPasswordRequest): Observable<any> {
-        return this._client.put(`${this._baseUrl}/resetPassword`, resetPasswordRequest);
-    }
+   resetPassword(resetPasswordRequest: ResetPasswordRequest): Observable<any> {
+      return this._client.put(`${this._baseUrl}/resetPassword`, resetPasswordRequest);
+   }
 }
