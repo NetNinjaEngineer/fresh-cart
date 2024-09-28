@@ -50,6 +50,13 @@ export class CartComponent implements OnInit {
             .updateCartProductQuantity(ele.id, Number(ele.innerHTML))
             .subscribe({
                next: (response) => {
+                  if (response.status === 'success') {
+                     this._cartService.getLoggedInUserCart().subscribe({
+                        next: (response) => {
+                           this.shoppingCart = response;
+                        },
+                     });
+                  }
                },
             });
       });
@@ -58,7 +65,6 @@ export class CartComponent implements OnInit {
    clearCart() {
       this._cartService.clearUserCart().subscribe({
          next: (response) => {
-            console.log(response)
             if (response.message == 'success') {
                this._cartService.setCartNumber(0);
                this.shoppingCart = {} as Cart;

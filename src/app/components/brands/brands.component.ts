@@ -28,7 +28,6 @@ export class BrandsComponent implements OnInit {
             this.brands = pagedBrands.data;
          },
          error: (e: HttpErrorResponse) => {
-            console.error(e);
          }
       })
    }
@@ -43,7 +42,6 @@ export class BrandsComponent implements OnInit {
 
          },
          error: (err: HttpErrorResponse) => {
-            console.error(err);
          },
       });
    }

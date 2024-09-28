@@ -1,40 +1,35 @@
 <div class="container">
-   <section
-   class="mx-auto mt-2 mb-4"
-   *ngIf="currentProduct != null"
->
-   <div class="row align-items-center" style="position: relative">
-      <div class="col-md-4">
-         <owl-carousel-o [options]="productSliderOptions">
-            <ng-container *ngFor="let image of currentProduct?.images">
-               <ng-template carouselSlide>
-                  <img [src]="image" class="w-100" />
-               </ng-template>
-            </ng-container>
-         </owl-carousel-o>
-      </div>
-      <div class="col-md-8">
-         <h3 class="title">{{ currentProduct.title }}</h3>
-         <p class="text-muted">{{ currentProduct.description }}</p>
-         <h4 class="h6 category">{{ currentProduct.category.name }}</h4>
-         <div class="d-flex align-items-center justify-content-between">
-            <span>{{ currentProduct.price | currency : "EGP" }}</span>
-            <div>
-               <i class="fas fa-star rating-color"></i>
-               <span class="text-muted">{{
-                  currentProduct.ratingsAverage
-               }}</span>
-            </div>
+   <section class="mx-auto mt-2 mb-4" *ngIf="currentProduct != null">
+      <div class="row align-items-center" style="position: relative">
+         <div class="col-md-4">
+            <owl-carousel-o [options]="productSliderOptions">
+               <ng-container *ngFor="let image of currentProduct?.images">
+                  <ng-template carouselSlide>
+                     <img [src]="image" class="w-100" />
+                  </ng-template>
+               </ng-container>
+            </owl-carousel-o>
          </div>
-         <button
-            (click)="AddToCart(currentProduct._id)"
-            class="btn-main w-100 mt-4"
-         >
-            <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
-            Add To Cart
-         </button>
+         <div class="col-md-8">
+            <h3 class="title">{{ currentProduct.title }}</h3>
+            <p class="text-muted">{{ currentProduct.description }}</p>
+            <h4 class="h6 category">{{ currentProduct.category.name }}</h4>
+            <div class="d-flex align-items-center justify-content-between">
+               <span>{{ currentProduct.price | currency : "EGP" }}</span>
+               <div>
+                  <i [class.rating-color]="currentProduct.ratingsAverage >= n" *ngFor="let n of [1, 2, 3, 4, 5]"
+                     class="fas fa-star rating-color"></i>
+                  <span class="text-muted">{{
+                     currentProduct.ratingsAverage
+                     }}</span>
+               </div>
+            </div>
+            <button (click)="AddToCart(currentProduct._id)" class="btn-main w-100 mt-4">
+               <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+               Add To Cart
+            </button>
+         </div>
       </div>
-   </div>
-</section>
+   </section>
 
 </div>

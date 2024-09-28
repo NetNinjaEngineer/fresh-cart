@@ -30,7 +30,6 @@ export class ShopWithBrandComponent implements OnInit {
                })
             }
          }, error: (e: HttpErrorResponse) => {
-            console.error(e);
          }
       })
    }

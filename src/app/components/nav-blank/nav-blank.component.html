@@ -1,70 +1,41 @@
-<nav
-   appScroll
-   class="navbar navbar-expand-sm navbar-light bg-light fixed-top py-2"
->
+<nav appScroll class="navbar navbar-expand-sm navbar-light bg-light fixed-top py-2">
    <div class="container-fluid">
       <a class="navbar-brand" routerLink="home">
          <img src="images/freshcart-logo.svg" alt="" />
       </a>
-      <button
-         class="navbar-toggler d-lg-none"
-         type="button"
-         data-bs-toggle="collapse"
-         data-bs-target="#collapsibleNavId"
-         aria-controls="collapsibleNavId"
-         aria-expanded="false"
-         aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+         data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+         aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item">
-               <a
-                  class="nav-link"
-                  routerLink="home"
-                  routerLinkActive="active-link"
-                  aria-current="page"
-                  >Home</a
-               >
+               <a class="nav-link" routerLink="home" routerLinkActive="active-link" aria-current="page">Home</a>
             </li>
             <li class="nav-item">
-               <a
-                  class="nav-link"
-                  routerLink="products"
-                  routerLinkActive="active-link"
-                  aria-current="page"
-                  >Products</a
-               >
+               <a class="nav-link" routerLink="products" routerLinkActive="active-link" aria-current="page">Products</a>
             </li>
             <li class="nav-item">
-               <a
-                  class="nav-link"
-                  routerLink="categories"
-                  routerLinkActive="active-link"
-                  aria-current="page"
-                  >Categories</a
-               >
+               <a class="nav-link" routerLink="categories" routerLinkActive="active-link"
+                  aria-current="page">Categories</a>
             </li>
             <li class="nav-item">
-               <a
-                  class="nav-link"
-                  routerLink="brands"
-                  routerLinkActive="active-link"
-                  aria-current="page"
-                  >Brands</a
-               >
+               <a class="nav-link" routerLink="brands" routerLinkActive="active-link" aria-current="page">Brands</a>
             </li>
          </ul>
          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
             <div class="d-flex align-items-center justify-content-center">
+               <li class="nav-item wish-list-icon">
+                  <a class="nav-link" routerLink="/wishlist">
+                     <i class="fa-solid fa-heart fa-2xl" style="color: #2dd28d;"></i>
+                     <span class="wishlistIcon">0</span>
+                  </a>
+               </li>
                <li class="nav-item mx-2 shop-cart-item">
                   <a class="nav-link" routerLink="/cart">
                      <i class="fas fa-cart-shopping"></i>
-                     <span
-                        class="cartIcon"
-                        >{{ numOfCartItems }}</span
-                     >
+                     <span class="cartIcon">{{ numOfCartItems }}</span>
                   </a>
                </li>
 

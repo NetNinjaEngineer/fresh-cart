@@ -45,6 +45,9 @@ const routes: Routes = [
             {
                path: 'subCategories/:categoryId', loadComponent: () => import('./components/sub-categories/sub-categories.component')
                   .then(m => m.SubCategoriesComponent), title: 'SubCategories'
+            },
+            {
+               path: 'wishlist', loadComponent: () => import('./components/wish-list/wish-list.component').then(m => m.WishListComponent), title: 'WishList'
             }
          ],
    },

@@ -28,7 +28,6 @@ export class SubCategoriesComponent implements OnInit {
                      this.subcategories = response.data;
                   },
                   error: (e: HttpErrorResponse) => {
-                     console.error(e)
                   }
                })
             }

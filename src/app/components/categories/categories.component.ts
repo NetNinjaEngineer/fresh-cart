@@ -31,7 +31,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
                this.categoryData = response.data;
             },
             error: (error: HttpErrorResponse) => {
-               console.log(error);
             }
          })
    }

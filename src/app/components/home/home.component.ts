@@ -13,6 +13,7 @@ import { SearchPipe } from '../../core/pipes/search.pipe';
 import { TrimTextPipe } from '../../core/pipes/trim-text.pipe';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { WishListService } from '../../core/service/wish-list.service';
 
 @Component({
    selector: 'app-home',
@@ -84,7 +85,8 @@ export class HomeComponent {
       private _categoryService: CategoryService,
       private _cartService: CartService,
       private _toasterService: ToastrService,
-      private _renderer2: Renderer2
+      private _renderer2: Renderer2,
+      private _wishListService: WishListService
    ) { }
 
    ngOnDestroy(): void {
@@ -131,5 +133,39 @@ export class HomeComponent {
             this._renderer2.removeAttribute(element, 'disabled');
          },
       });
+   }
+
+
+   addProductToWishlist(productId: string, wishListBtn: any) {
+
+      this._wishListService.getLoggedInUserWishlist().subscribe({
+         next: (response) => {
+            if (response.status == 'success') {
+               const products = response.data as Product[];
+               if (products.find(p => p._id === productId) != null) {
+                  this._wishListService.removeProductFromWishlist(productId).subscribe({
+                     next: (response) => {
+                        if (response.status == 'success') {
+                           this._toasterService.info(response.message);
+                        }
+                     }
+                  })
+               } else {
+
+                  this._wishListService.addProductToWishlist(productId).subscribe({
+                     next: (response) => {
+                        console.log(response);
+                        if (response.status == 'success') {
+                           this._renderer2.addClass(wishListBtn, 'fa-solid')
+                           this._renderer2.setStyle(wishListBtn, 'color', '#f2520d')
+                           this._toasterService.success(response.message);
+                        }
+                     }
+                  })
+               }
+            }
+         }
+      })
+
    }
 }

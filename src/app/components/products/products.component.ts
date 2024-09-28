@@ -27,6 +27,9 @@ import { FormsModule } from '@angular/forms';
    styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit {
+   addProductToWishlist(arg0: string) {
+      throw new Error('Method not implemented.');
+   }
    searchTerm: string = '';
    pageChanged(pageNumber: number) {
       this._productService.getPaginatedProducts(pageNumber).subscribe({
@@ -83,7 +86,6 @@ export class ProductsComponent implements OnInit {
             }
          },
          error: (err: HttpErrorResponse) => {
-            console.error(err);
             this._renderer2.removeAttribute(element, 'disabled');
          },
       });

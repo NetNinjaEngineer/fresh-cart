@@ -1,0 +1,39 @@
+<div class="wishlist-container" *ngIf="wishlistData != null && wishlistData.length > 0">
+   <div class="wishlist-item" *ngFor="let product of wishlistData"
+      [ngStyle]="{ 'background-color': '#e8f5e9', 'border-radius': '15px', 'padding': '20px', 'margin-bottom': '20px' }">
+      <div class="wishlist-header">
+         <img [src]="product.imageCover" alt="{{ product.title }}" class="product-image" />
+         <div class="wishlist-info">
+            <h3>{{ product.title }}</h3>
+            <p class="product-price">
+               Price: <span class="price">{{ product.price }} EGP</span>
+               <span *ngIf="product.priceAfterDiscount > 0" class="discount-price">Discounted Price: {{
+                  product.priceAfterDiscount }} EGP</span>
+            </p>
+            <p>{{ product.description }}</p>
+            <div class="d-flex align-items-center justify-content-between ">
+               <p class="rating">
+                  Rating:
+                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                     <i class="fa" [ngClass]="{
+                     'fa-star': product.ratingsAverage >= i + 1,
+                     'fa-star-half-o': product.ratingsAverage >= i + 0.5 && product.ratingsAverage < i + 1,
+                     'fa-star-o': product.ratingsAverage < i + 0.5
+                   }"></i>
+                  </ng-container>
+                  ({{ product.ratingsAverage }} out of 5)
+                  ({{ product.ratingsQuantity }} Reviews)
+               </p>
+               <span (click)="removeFromWishlist(product._id)">
+                  <i class="fa fa-trash remove-icon"></i>
+               </span>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>
+
+<ng-container *ngIf="wishlistData?.length == 0">
+   <h2 class="text-center">Your Wish List Is Empty...</h2>
+</ng-container>

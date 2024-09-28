@@ -4,37 +4,17 @@
          <owl-carousel-o [options]="mainSliderOptions">
             <ng-container>
                <ng-template carouselSlide>
-                  <img
-                     height="400"
-                     class="w-100"
-                     src="images/main-slider-1.jpeg"
-                     alt=""
-                  />
+                  <img height="400" class="w-100" src="images/main-slider-1.jpeg" alt="" />
                </ng-template>
                <ng-template carouselSlide>
-                  <img
-                     height="400"
-                     class="w-100"
-                     src="images/main-slider-2.jpeg"
-                     alt=""
-                  />
+                  <img height="400" class="w-100" src="images/main-slider-2.jpeg" alt="" />
                </ng-template>
             </ng-container>
          </owl-carousel-o>
       </div>
       <div class="col-md-2">
-         <img
-            height="200"
-            class="w-100"
-            src="images/main-slider-2.jpeg"
-            alt=""
-         />
-         <img
-            height="200"
-            class="w-100"
-            src="images/main-slider-3.jpeg"
-            alt=""
-         />
+         <img height="200" class="w-100" src="images/main-slider-2.jpeg" alt="" />
+         <img height="200" class="w-100" src="images/main-slider-3.jpeg" alt="" />
       </div>
    </div>
 </section>
@@ -44,13 +24,7 @@
    <owl-carousel-o [options]="categorySliderOptions">
       <ng-container *ngFor="let slide of categories">
          <ng-template carouselSlide [id]="slide._id">
-            <img
-               class="w-100"
-               style="height: 275px"
-               [src]="slide.image"
-               [alt]="slide.name"
-               [title]="slide.name"
-            />
+            <img class="w-100" style="height: 275px" [src]="slide.image" [alt]="slide.name" [title]="slide.name" />
             <h3 class="h5 text-start py-3">{{ slide.name }}</h3>
          </ng-template>
       </ng-container>
@@ -59,51 +33,27 @@
 
 <section class="my-4" *ngIf="products.length > 0">
    <h2>Shop Popular Products</h2>
-   <input
-      type="text"
-      class="form-control w-75 mx-auto mb-4 mt-4"
-      placeholder="Search..."
-      [(ngModel)]="searchTerm"
-   />
+   <input type="text" class="form-control w-75 mx-auto mb-4 mt-4" placeholder="Search..." [(ngModel)]="searchTerm" />
    <div class="row g-4">
-      <div
-         class="col-md-2"
-         *ngFor="let product of products | search : searchTerm"
-      >
-         <div class="card p-2">
-            <div
-               [routerLink]="['/details', product._id]"
-               class="cursor-pointer"
-            >
-               <img
-                  [src]="product.imageCover"
-                  class="image-fluid w-100 mb-2"
-                  alt=""
-               />
-               <h6 class="text-main product-category">
-                  {{ product.category.name }}
-               </h6>
-               <h4 class="h6 product-title">
-                  {{ product.title | trimText : 2 | uppercase }}
-               </h4>
-               <div
-                  class="d-flex align-items-center justify-content-between product-price"
-               >
+      <div class="col-md-2" *ngFor="let product of products | search : searchTerm">
+         <div class="card product p-3">
+            <i #wishListBtn (click)="addProductToWishlist(product._id, wishListBtn)"
+               class="fa-regular fa-heart fa-xl heart cursor-pointer"></i>
+            <div [routerLink]="['/details', product._id]" class="cursor-pointer">
+               <img [src]="product.imageCover" class="image-fluid w-100 mb-2" alt="" />
+               <h6 class="text-main product-category">{{ product.category.name }}</h6>
+               <h5 class="h6 product-title">{{ product.title | trimText : 2 | uppercase }}</h5>
+               <div class="d-flex align-items-center justify-content-between">
                   <span>{{ product.price | currency : "EGP " }}</span>
+
                   <div>
                      <i class="fas fa-star rating-color"></i>
-                     <span class="text-muted">{{
-                        product.ratingsAverage
-                     }}</span>
+                     <span class="text-muted">{{product.ratingsAverage}}</span>
                   </div>
                </div>
             </div>
 
-            <button
-               #btnAdd
-               (click)="AddToCart(product._id, btnAdd)"
-               class="btn-main w-100"
-            >
+            <button #btnAdd (click)="AddToCart(product._id, btnAdd)" class="btn-main w-100">
                +Add To Cart
             </button>
          </div>
