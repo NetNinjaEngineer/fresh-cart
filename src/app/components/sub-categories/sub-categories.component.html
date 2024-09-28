@@ -1,0 +1,12 @@
+<section class="container" *ngIf="subcategories !=null && subcategories.length > 0">
+   <h4 class="text-center text-main">Sub Categories</h4>
+   <div class="row g-4 justify-content-center align-items-center my-4">
+      <div *ngFor="let subCategory of subcategories" class="col-md-3">
+         <h4 class="p-5 shadow text-center">{{subCategory.name}}</h4>
+      </div>
+   </div>
+</section>
+
+<div class="alert alert-warning" *ngIf="subcategories != null && subcategories.length === 0">
+   There is no sub categories available now.
+</div>

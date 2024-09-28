@@ -1,13 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CategoryService } from '../../core/service/category.service';
 import { Pagination } from '../../core/interfaces/pagination';
 import { Category } from '../../core/interfaces/Category';
 import { HttpErrorResponse } from '@angular/common/http';
-import { map, Subscription, switchMap, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Subcategory } from '../../core/interfaces/Subcategory';
-import { ProductService } from '../../core/service/product.service';
-import { Product } from '../../core/interfaces/product';
 import { TrimTextPipe } from '../../core/pipes/trim-text.pipe';
 import { RouterLink } from '@angular/router';
 
@@ -19,61 +16,25 @@ import { RouterLink } from '@angular/router';
    styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit, OnDestroy {
-   pagedCategories: Pagination<Category> = {} as Pagination<Category>;
-   pagedCategoriesSubscription!: Subscription;
-   subCategories: Subcategory[] = [];
-   loadedProducts: Product[] = [];
-   loadedProductsCount: number = 0;
-   currentSubCategoryName: string = '';
-   message: string = '';
-
-   constructor(
-      private _categoryService: CategoryService,
-      private _productService: ProductService) { }
+   private _categoryService: CategoryService = inject(CategoryService);
+   private _categorySubscribtion!: Subscription;
+   categoryData: Category[] = [];
 
    ngOnDestroy(): void {
-      this.pagedCategoriesSubscription.unsubscribe();
+      this._categorySubscribtion.unsubscribe();
    }
-
    ngOnInit(): void {
-      this.pagedCategoriesSubscription = this._categoryService
-         .getPaginatedCategories().subscribe({
-            next: (pagedCategories: Pagination<Category>) => {
-               this.pagedCategories = pagedCategories;
+      this._categorySubscribtion = this._categoryService
+         .getAllCategories()
+         .subscribe({
+            next: (response: Pagination<Category>) => {
+               this.categoryData = response.data;
             },
             error: (error: HttpErrorResponse) => {
-               console.log(error)
+               console.log(error);
             }
          })
    }
 
-
-   loadProductsInSubCategory(categoryId: string) {
-      this._categoryService.getSpecificSubcategory(categoryId).pipe(
-         switchMap((response) => {
-            const subCategory: Subcategory = response.data;
-            this.currentSubCategoryName = subCategory.name;
-            return this._productService.getAllProducts().pipe(
-               map((products: Product[]) => {
-                  return products.filter(product =>
-                     product.subcategory.some(subCat => subCat._id === subCategory._id)
-                  );
-               })
-            );
-         })
-      ).subscribe({
-         next: (filteredProducts: Product[]) => {
-            console.log(filteredProducts);
-            this.loadedProducts = filteredProducts;
-            this.loadedProductsCount = filteredProducts.length;
-            if (this.loadedProducts.length === 0) {
-               this.message = `No available products in ${this.currentSubCategoryName} category.`;
-            }
-         },
-         error: (error) => {
-            console.error('Error loading products or subcategory', error);
-         }
-      });
-   }
 
 }

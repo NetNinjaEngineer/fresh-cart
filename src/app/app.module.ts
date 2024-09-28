@@ -23,7 +23,7 @@ import { loadingInterceptor } from './core/interceptors/loading.interceptor';
    ],
    providers: [
       provideHttpClient(
-         withInterceptors([tokenInterceptor])
+         withInterceptors([tokenInterceptor, loadingInterceptor])
       )
    ],
    bootstrap: [AppComponent]

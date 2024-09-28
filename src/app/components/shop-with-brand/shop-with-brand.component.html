@@ -1,1 +1,26 @@
-<p>shop-with-brand works!</p>
+<section class="my-4" *ngIf="allProducts != null && allProducts.length > 0">
+   <h2 class="text-center mb-4 text-main">Shop By Brands - Products</h2>
+   <div class="row g-4 justify-content-center">
+      <div class="col-md-2" *ngFor="
+            let product of allProducts
+         ">
+         <div class="card product p-2">
+            <div [routerLink]="['/details', product._id]" class="cursor-pointer">
+               <img [src]="product.imageCover" class="image-fluid w-100 mb-2" alt="" />
+               <h6 class="text-main product-category">{{ product.category.name }}</h6>
+               <h4 class="h6 product-title">{{ product.title | trimText : 2 | uppercase }}</h4>
+               <div class="d-flex align-items-center justify-content-between product-price">
+                  <span>{{ product.price | currency : "EGP " }}</span>
+                  <div>
+                     <i class="fas fa-star rating-color"></i>
+                     <span class="text-muted">{{
+                        product.ratingsAverage
+                        }}</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<div *ngIf="allProducts != null && allProducts.length === 0" class="w-75 mx-auto mt-3 alert alert-warning">There is no available Products In this Brand.</div>

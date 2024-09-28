@@ -6,77 +6,76 @@ import { TrimTextPipe } from '../../core/pipes/trim-text.pipe';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'app-cart',
-    standalone: true,
-    imports: [CommonModule, TrimTextPipe, RouterModule],
-    templateUrl: './cart.component.html',
-    styleUrl: './cart.component.css',
+   selector: 'app-cart',
+   standalone: true,
+   imports: [CommonModule, TrimTextPipe, RouterModule],
+   templateUrl: './cart.component.html',
+   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
-    shoppingCart: Cart | null = {} as Cart;
-    constructor(private _cartService: CartService, private _router: Router) {}
+   shoppingCart: Cart | null = {} as Cart;
+   constructor(private _cartService: CartService, private _router: Router) { }
 
-    ngOnInit(): void {
+   ngOnInit(): void {
 
-        this._cartService.getLoggedInUserCart().subscribe({
-            next: (response) => {
-                this.shoppingCart = response;
-                console.log(this.shoppingCart);
-            },
-        });
-    }
+      this._cartService.getLoggedInUserCart().subscribe({
+         next: (response) => {
+            this.shoppingCart = response;
+         },
+      });
+   }
 
-    onIncrement(counter: any): void {
-        counter.innerHTML = Number(counter.innerHTML) + 1;
-    }
+   onIncrement(counter: any): void {
+      counter.innerHTML = Number(counter.innerHTML) + 1;
+   }
 
-    onDecrement(counter: any): void {
-        if (counter.innerHTML > 0) {
-            counter.innerHTML = Number(counter.innerHTML) - 1;
-        }
-    }
+   onDecrement(counter: any): void {
+      if (counter.innerHTML > 0) {
+         counter.innerHTML = Number(counter.innerHTML) - 1;
+      }
+   }
 
-    disableDecrement(counter: HTMLSpanElement): boolean {
-        return Number(counter.innerHTML) == 1;
-    }
+   disableDecrement(counter: HTMLSpanElement): boolean {
+      return Number(counter.innerHTML) == 1;
+   }
 
-    continueShopping() {
-        this._router.navigate(['/products']);
-    }
+   continueShopping() {
+      this._router.navigate(['/products']);
+   }
 
-    updateCart() {
-        let allQuantitiesElements = document.querySelectorAll('.counter');
-        allQuantitiesElements.forEach((ele) => {
-            this._cartService
-                .updateCartProductQuantity(ele.id, Number(ele.innerHTML))
-                .subscribe({
-                    next: (response) => {
-                        console.log(response);
-                    },
-                });
-        });
-    }
+   updateCart() {
+      let allQuantitiesElements = document.querySelectorAll('.counter');
+      allQuantitiesElements.forEach((ele) => {
+         this._cartService
+            .updateCartProductQuantity(ele.id, Number(ele.innerHTML))
+            .subscribe({
+               next: (response) => {
+               },
+            });
+      });
+   }
 
-    clearCart() {
-        this._cartService.clearUserCart().subscribe({
-            next: (response) => {
-                console.log(response);
-                if (response.status == 'success') {
-                    this.shoppingCart = {} as Cart;
-                    this._cartService.setCartNumber(0);
-                }
-            },
-        });
-    }
-
-    removeFromCart(id: string) {
-        this._cartService.removeProductFromCart(id).subscribe({
-            next: (response) => {
-                console.log(response)
-                if (response.status == 'success') {
-                    this.shoppingCart = response;
-                }
+   clearCart() {
+      this._cartService.clearUserCart().subscribe({
+         next: (response) => {
+            console.log(response)
+            if (response.message == 'success') {
+               this._cartService.setCartNumber(0);
+               this.shoppingCart = {} as Cart;
             }
-        })
-    }
+         },
+      });
+   }
+
+   removeFromCart(id: string) {
+      this._cartService.removeProductFromCart(id).subscribe({
+         next: (response) => {
+            if (response.status == 'success') {
+               this.shoppingCart = response;
+            }
+         }
+      })
+   }
+
+
 }

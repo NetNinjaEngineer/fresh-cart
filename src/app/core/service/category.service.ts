@@ -19,48 +19,12 @@ export class CategoryService {
       return this._client.get<Pagination<Category>>(`${this._baseUrl}`);
    }
 
-   getPaginatedCategories(
-      _pageNumber: number = 1,
-      _limit: number = 40
-   ): Observable<Pagination<Category>> {
-      return this._client
-         .get<Pagination<Category>>(`${this._baseUrl}?page=${_pageNumber}&limit=${_limit}`)
-         .pipe(
-            mergeMap(pagedCategories => {
-               const categoriesWithSubCategories$: Observable<Category[]> = forkJoin(
-                  pagedCategories.data.map(category =>
-                     this._client
-                        .get<Pagination<Subcategory>>(`${this._baseUrl}/${category._id}/subcategories`)
-                        .pipe(
-                           map(pagedSubCategories => {
-                              category.subCategories = pagedSubCategories.data;
-                              return category;
-                           }),
-                           catchError(error => {
-                              console.error(error);
-                              category.subCategories = [];
-                              return of(category);
-                           })
-                        )
-                  )
-               );
-
-               return categoriesWithSubCategories$.pipe(
-                  map(categories => ({
-                     ...pagedCategories,
-                     data: categories
-                  }))
-               );
-            }),
-            catchError(error => {
-               console.error(error);
-               return of();
-            })
-         );
-   }
-
    getSpecificSubcategory(subcategoryId: string): Observable<{data: Subcategory}> {
       return this._client.get<{data: Subcategory}>(`${this._subCategoriesUrl}/${subcategoryId}`);
+   }
+
+   getAllSubcategoriesInCategory(categoryId: string): Observable<Pagination<Subcategory>> {
+      return this._client.get<Pagination<Subcategory>>(`${this._baseUrl}/${categoryId}/subcategories`);
    }
 
 }
