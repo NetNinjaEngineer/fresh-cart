@@ -12,7 +12,8 @@
                         }
          ">
          <div class="card product p-3">
-            <i (click)="addProductToWishlist(product._id)" class="fa-regular fa-heart fa-xl heart cursor-pointer"></i>
+            <i #wishListBtn (click)="addProductToWishlist(product._id, wishListBtn)"
+               class="fa-regular fa-heart fa-xl heart cursor-pointer"></i>
             <div [routerLink]="['/details', product._id]" class="cursor-pointer">
                <img [src]="product.imageCover" class="image-fluid w-100 mb-2" alt="" />
                <h6 class="text-main product-category">{{ product.category.name }}</h6>

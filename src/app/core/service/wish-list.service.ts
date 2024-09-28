@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -8,6 +8,8 @@ import { environment } from '../../../environments/environment';
 })
 export class WishListService {
    private _baseUrl: string = environment.baseApiUrl;
+   wishListItemsCount: BehaviorSubject<number> = new BehaviorSubject(0);
+
    constructor(private _client: HttpClient) { }
 
    addProductToWishlist(productId: string): Observable<any> {

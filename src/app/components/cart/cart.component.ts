@@ -78,6 +78,7 @@ export class CartComponent implements OnInit {
          next: (response) => {
             if (response.status == 'success') {
                this.shoppingCart = response;
+               this._cartService.cartNumber.next(response.numOfCartItems);
             }
          }
       })

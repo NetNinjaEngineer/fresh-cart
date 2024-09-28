@@ -54,7 +54,7 @@ export class AuthenticationService {
       this._router.navigate(['/login']);
    }
 
-   getCurrentUserInfo(): JwtPayload | null {
+   getCurrentUserInfo() {
       const token: any = localStorage.getItem('token');
       if (token != null) {
          const decodedToken: JwtPayload = jwtDecode(token);

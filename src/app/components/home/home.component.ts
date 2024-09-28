@@ -146,7 +146,7 @@ export class HomeComponent {
                   this._wishListService.removeProductFromWishlist(productId).subscribe({
                      next: (response) => {
                         if (response.status == 'success') {
-                           this._toasterService.info(response.message);
+                           this._toasterService.success(response.message);
                         }
                      }
                   })
@@ -154,8 +154,8 @@ export class HomeComponent {
 
                   this._wishListService.addProductToWishlist(productId).subscribe({
                      next: (response) => {
-                        console.log(response);
                         if (response.status == 'success') {
+                           this._wishListService.wishListItemsCount.next(response.data.length);
                            this._renderer2.addClass(wishListBtn, 'fa-solid')
                            this._renderer2.setStyle(wishListBtn, 'color', '#f2520d')
                            this._toasterService.success(response.message);

@@ -24,4 +24,8 @@ export class OrderService {
          shippingAddress
       );
    }
+
+   getCurrentUserOrders(userId: string): Observable<any> {
+      return this._client.get(`${this._baseUrl}/${userId}`);
+   }
 }

@@ -1,7 +1,5 @@
 <div class="container">
-   <section
-      *ngIf="shoppingCart && shoppingCart.numOfCartItems > 0"
-   >
+   <section *ngIf="shoppingCart && shoppingCart.numOfCartItems > 0">
       <header>
          <div class="d-flex justify-content-between align-items-center">
             <h2>
@@ -17,47 +15,27 @@
             <div class="col-md-8">
                <div *ngFor="let cartItem of shoppingCart.data.products">
                   <div class="cart-item">
-                     <div
-                        class="row d-flex align-items-center justify-content-center"
-                     >
+                     <div class="row d-flex align-items-center justify-content-center">
                         <div class="col-md-1">
-                           <img
-                              [src]="cartItem.product.imageCover"
-                              [alt]="cartItem.product.title"
-                              class="w-100"
-                           />
+                           <img [src]="cartItem.product.imageCover" [alt]="cartItem.product.title" class="w-100" />
                         </div>
                         <div class="col-md-7">
                            <p class="bold">
                               {{ cartItem.product.title | trimText : 2 }}
                            </p>
-                           <button
-                              (click)="removeFromCart(cartItem.product._id)"
-                              class="rm-btn text-muted py-1"
-                           >
+                           <button (click)="removeFromCart(cartItem.product._id)" class="rm-btn text-muted py-1">
                               <i class="fa-regular fa-trash-can text-main"></i>
                               Remove
                            </button>
                         </div>
                         <div class="col-md-2">
                            <div class="d-flex align-items-center">
-                              <button
-                                 [disabled]="disableDecrement(counter)"
-                                 (click)="onDecrement(counter)"
-                                 class="minus"
-                              >
+                              <button [disabled]="disableDecrement(counter)" (click)="onDecrement(counter)"
+                                 class="minus">
                                  -
                               </button>
-                              <span
-                                 [id]="cartItem.product._id"
-                                 #counter
-                                 class="counter"
-                                 >{{ cartItem.count }}</span
-                              >
-                              <button
-                                 (click)="onIncrement(counter)"
-                                 class="plus"
-                              >
+                              <span [id]="cartItem.product._id" #counter class="counter">{{ cartItem.count }}</span>
+                              <button (click)="onIncrement(counter)" class="plus">
                                  +
                               </button>
                            </div>
@@ -75,22 +53,18 @@
                <div class="row">
                   <div class="summary">
                      <h5><b>Summary</b></h5>
-                     <p
-                        class="total d-flex align-items-center justify-content-between"
-                     >
+                     <p class="total d-flex align-items-center justify-content-between">
                         <span>Subtotal</span>
                         <span class="text-main">{{
                            shoppingCart.data.totalCartPrice | currency : "EGP "
-                        }}</span>
+                           }}</span>
                      </p>
-                     <button
-                        [routerLink]="['/checkout', shoppingCart.cartId]"
-                        class="btn-main summary-btn d-flex justify-content-between align-items-center"
-                     >
+                     <button [routerLink]="['/checkout', shoppingCart.cartId]"
+                        class="btn-main summary-btn d-flex justify-content-between align-items-center">
                         <span class="text-bold">Go to Checkout</span>
                         <span class="text-bold">{{
                            shoppingCart.data.totalCartPrice | currency : "EGP "
-                        }}</span>
+                           }}</span>
                      </button>
                      <p class="terms">
                         By placing your order, you agree to be bound by the
@@ -107,10 +81,7 @@
          <div class="row py-3">
             <div class="col-md-8">
                <div class="d-flex align-items-center justify-content-between">
-                  <button
-                     (click)="continueShopping()"
-                     class="btn-main rounded text-bold"
-                  >
+                  <button (click)="continueShopping()" class="btn-main rounded text-bold">
                      Continue Shopping
                   </button>
 
@@ -126,4 +97,5 @@
 
 <ng-container *ngIf="shoppingCart?.numOfCartItems == 0">
    <h2 class="text-center">Your Cart Is Empty...</h2>
+   <img src="images/Empty-cart.svg" alt="" class="w-100 mt-3" height="400">
 </ng-container>

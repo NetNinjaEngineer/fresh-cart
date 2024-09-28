@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { AuthenticationService } from '../../core/service/authentication.service';
 import { CartService } from '../../core/service/cart.service';
 import { ScrollDirective } from '../../core/directives/scroll.directive';
+import { WishListService } from '../../core/service/wish-list.service';
 
 @Component({
    selector: 'app-nav-blank',
@@ -14,10 +15,12 @@ import { ScrollDirective } from '../../core/directives/scroll.directive';
 export class NavBlankComponent implements OnInit {
 
    numOfCartItems?: number | null = null;
+   numOfWishlistItems?: number | null = null;
 
    constructor(
       private _authenticationService: AuthenticationService,
-      private _cartService: CartService) { }
+      private _cartService: CartService,
+      private _wishlistService: WishListService) { }
 
    ngOnInit(): void {
       this._cartService.getLoggedInUserCart().subscribe({
@@ -28,11 +31,23 @@ export class NavBlankComponent implements OnInit {
          }
       })
 
+      this._wishlistService.getLoggedInUserWishlist().subscribe({
+         next: (response) => {
+            this.numOfWishlistItems = response.data.length;
+         }
+      })
+
       this._cartService.getCartNumber().subscribe({
          next: (cartNumber) => {
             if (cartNumber != null) {
                this.numOfCartItems = cartNumber;
             }
+         }
+      })
+
+      this._wishlistService.wishListItemsCount.subscribe({
+         next: (itemsCount) => {
+            this.numOfWishlistItems = itemsCount;
          }
       })
 

@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../core/service/cart.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { WishListService } from '../../core/service/wish-list.service';
 
 @Component({
    selector: 'app-products',
@@ -27,9 +28,6 @@ import { FormsModule } from '@angular/forms';
    styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit {
-   addProductToWishlist(arg0: string) {
-      throw new Error('Method not implemented.');
-   }
    searchTerm: string = '';
    pageChanged(pageNumber: number) {
       this._productService.getPaginatedProducts(pageNumber).subscribe({
@@ -54,7 +52,8 @@ export class ProductsComponent implements OnInit {
       private _productService: ProductService,
       private _toasterService: ToastrService,
       private _cartService: CartService,
-      private _renderer2: Renderer2
+      private _renderer2: Renderer2,
+      private _wishListService: WishListService
    ) { }
 
    ngOnInit(): void {
@@ -89,5 +88,36 @@ export class ProductsComponent implements OnInit {
             this._renderer2.removeAttribute(element, 'disabled');
          },
       });
+   }
+
+   addProductToWishlist(productId: string, wishListBtn: any) {
+      this._wishListService.getLoggedInUserWishlist().subscribe({
+         next: (response) => {
+            if (response.status == 'success') {
+               const products = response.data as Product[];
+               if (products.find(p => p._id === productId) != null) {
+                  this._wishListService.removeProductFromWishlist(productId).subscribe({
+                     next: (response) => {
+                        if (response.status == 'success') {
+                           this._toasterService.success(response.message);
+                        }
+                     }
+                  })
+               } else {
+
+                  this._wishListService.addProductToWishlist(productId).subscribe({
+                     next: (response) => {
+                        if (response.status == 'success') {
+                           this._wishListService.wishListItemsCount.next(response.data.length);
+                           this._renderer2.addClass(wishListBtn, 'fa-solid')
+                           this._renderer2.setStyle(wishListBtn, 'color', '#f2520d')
+                           this._toasterService.success(response.message);
+                        }
+                     }
+                  })
+               }
+            }
+         }
+      })
    }
 }
