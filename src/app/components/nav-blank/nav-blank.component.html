@@ -26,26 +26,44 @@
          </ul>
          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
             <div class="d-flex align-items-center justify-content-center">
-               <li class="nav-item wish-list-icon">
-                  <a class="nav-link" routerLink="/wishlist">
-                     <i class="fa-solid fa-heart fa-2xl" style="color: #2dd28d;"></i>
-                     <span class="wishlistIcon">{{numOfWishlistItems}}</span>
-                  </a>
-               </li>
-               <li class="nav-item mx-2 shop-cart-item">
-                  <a class="nav-link" routerLink="/cart">
-                     <i class="fas fa-cart-shopping"></i>
-                     <span class="cartIcon">{{ numOfCartItems }}</span>
+
+               <li class="nav-item position-relative">
+                  <a class="nav-link" routerLink="/settings">
+                     <i class="fa-solid fa-user fa-lg"></i>
                   </a>
                </li>
 
-               <!-- <li class="nav-item d-flex align-items-center gap-3 me-3">
-                  <i class="fa-brands fab fa-facebook social cursor-pointer"></i>
-                  <i class="fa-brands fab fa-linkedin social cursor-pointer"></i>
-               </li> -->
-               <li class="nav-item">
-                  <span role="button" (click)="signOut()">SignOut</span>
+               <li class="nav-item wish-list-icon mx-2 position-relative">
+                  <a class="nav-link" routerLink="/wishlist">
+                     <i class="fa-solid fa-heart fa-lg" style="color: #2dd28d;"></i>
+                     <span
+                        class="badge bg-success position-absolute top-0 start-100 translate-middle p-2 rounded-circle wishlistIcon">{{numOfWishlistItems}}</span>
+                  </a>
                </li>
+
+               <li class="nav-item mx-2 shop-cart-item position-relative">
+                  <a class="nav-link" routerLink="/cart">
+                     <i class="fas fa-cart-shopping fa-lg"></i>
+                     <span
+                        class="badge bg-success position-absolute top-0 start-100 translate-middle p-2 rounded-circle cartIcon">{{
+                        numOfCartItems }}</span>
+                  </a>
+               </li>
+
+               <li class="nav-item mx-2 position-relative">
+                  <a class="nav-link" routerLink="/allorders">
+                     <i class="fas fa-box fa-lg"></i>
+                     <span
+                        class="badge bg-success position-absolute top-0 start-100 translate-middle p-2 rounded-circle ordersIcon">{{
+                        numOfOrders }}</span>
+                  </a>
+               </li>
+
+
+               <li class="nav-item mx-2">
+                  <span role="button" class="nav-link" (click)="signOut()">SignOut</span>
+               </li>
+
             </div>
          </ul>
       </div>

@@ -1,0 +1,46 @@
+.settings-container {
+   display: flex;
+   height: 100vh;
+}
+
+.sidebar {
+   width: 250px;
+   background-color: #f8f9fa;
+   padding: 20px;
+   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+   margin-top: -16px;
+}
+
+.sidebar ul {
+   list-style-type: none;
+   padding: 0;
+}
+
+.sidebar ul li {
+   margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+   text-align: center;
+}
+
+.active-link-btn {
+   text-decoration: none;
+   background-color: #000;
+   color: white;
+   font-size: 16px;
+   padding: 10px;
+   border-radius: 8px;
+   padding: 10px 20px;
+   text-align: center;
+}
+
+.main-content {
+   flex: 1;
+   padding: 40px;
+}
+
+.main-content h2 {
+   font-size: 24px;
+   margin-bottom: 30px;
+}

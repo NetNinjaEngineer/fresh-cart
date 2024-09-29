@@ -47,7 +47,6 @@ export class CheckoutComponent implements OnInit {
             const shippingAddress = this.checkoutForm.value as ShippingAddress;
             this._orderService.createOnlineOrder(this.basketId, shippingAddress).subscribe({
                next: (response) => {
-                  console.log(response);
                   if (response.status == 'success') {
                      window.open(response.session.url, '_self');
                   }

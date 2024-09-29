@@ -1,1 +1,41 @@
-<p>all-orders works!</p>
+<div class="container-fluid">
+
+   <h3 class="text-main text-center mb-4 "> <b>All Orders</b> </h3>
+
+   <div class="order-row" *ngFor="let order of allOrders">
+      <div class="order-card">
+         <div class="order-header">
+            <h3>Order ID: {{ order._id }}</h3>
+            <p>Customer: {{ order.user.name }}</p>
+            <p>Email: {{ order.user.email }}</p>
+            <p>Phone: {{ order.user.phone }}</p>
+         </div>
+
+
+         <div class="order-details">
+            <p>Payment Method: {{ order.paymentMethodType | uppercase }}</p>
+            <p>Total Price: ${{ order.totalOrderPrice }}</p>
+            <p>Paid: {{ order.isPaid ? 'Yes' : 'No' }}</p>
+            <p>Delivered: {{ order.isDelivered ? 'Yes' : 'No' }}</p>
+         </div>
+
+
+         <div class="cart-items">
+            <div *ngFor="let item of order.cartItems" class="cart-item">
+               <img [src]="item.product.imageCover" alt="Product Image" />
+               <div class="item-info">
+                  <p>{{ item.product.title }}</p>
+                  <p>Quantity: {{ item.count }}</p>
+                  <p>Price: ${{ item.price }}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<ng-container *ngIf="allOrders?.length == 0">
+   <h2 class="text-center">No Orders Yet...</h2>
+   <img src="images/Empty-Orders.svg" alt="" class="w-100 mt-3" height="400">
+</ng-container>

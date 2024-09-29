@@ -4,7 +4,7 @@
 
 :root {
    --main-color: #17ce17;
-   --light-color:#f0f3f2;
+   --light-color: #f0f3f2;
    --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
       rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
       rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
@@ -104,11 +104,11 @@ a:hover {
 }
 
 .form-control {
-   border-color: #24af24b4 !important;
+   border-color: #1ad11a57 !important;
 }
 
 .form-control:focus {
-   box-shadow: 0 0 0 0.2rem rgba(125, 214, 95, 0.603);
+   box-shadow: 0 0 0 0.2rem rgba(125, 214, 95, 0.600);
 }
 
 .social {
@@ -181,4 +181,25 @@ a:hover {
 
 .toast-success {
    background-color: #28a746be !important;
- }
+}
+
+input {
+   font-size: 15px !important;
+   font-weight: 600 !important;
+   color: #000000a8 !important;
+   padding-top: 10px !important;
+   padding-bottom: 10px !important;
+}
+
+input::placeholder {
+   font-size: 15px !important;
+   color: #00000070 !important;
+   font-weight: 600 !important;
+}
+
+label {
+   display: inline-block;
+   font-size: 16px;
+   font-weight: 600;
+   margin-bottom: 10px;
+}

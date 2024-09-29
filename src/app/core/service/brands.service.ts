@@ -20,7 +20,6 @@ export class BrandsService {
    getProductsByBrandId(_brandId: string): Observable<Product[]> {
       return this._client.get<Pagination<Product>>(`${environment.baseApiUrl}/api/v1/products`).pipe(
          map(pagedProducts => pagedProducts.data.filter(p => p.brand._id === _brandId)),
-         tap(filteredData => console.log(filteredData)),
          catchError(error => {
             console.error(error);
             return of([])

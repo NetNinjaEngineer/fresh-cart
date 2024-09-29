@@ -48,6 +48,22 @@ const routes: Routes = [
             },
             {
                path: 'wishlist', loadComponent: () => import('./components/wish-list/wish-list.component').then(m => m.WishListComponent), title: 'WishList'
+            },
+            {
+               path: 'settings', loadComponent: () => import('./components/settings/settings.component')
+                  .then(m => m.SettingsComponent), title: 'Settings', children: [
+                     {
+                        path: '', redirectTo: 'edit-profile', pathMatch: 'full'
+                     },
+                     {
+                        path: 'edit-profile', loadComponent: () => import('./components/edit-profile/edit-profile.component')
+                           .then(m => m.EditProfileComponent), title: 'Edit Profile'
+                     },
+                     {
+                        path: 'change-password', loadComponent: () => import('./components/change-password/change-password.component')
+                           .then(m => m.ChangePasswordComponent), title: 'Change Password'
+                     }
+                  ]
             }
          ],
    },

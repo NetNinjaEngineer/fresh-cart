@@ -1,0 +1,33 @@
+<h2 class="text-main mb-4"><b>Account Setting</b></h2>
+
+<form [formGroup]="accountForm" (ngSubmit)="onSaveDetails()">
+   <div class="mb-3">
+      <label for="name">Name</label>
+      <input class="form-control py-3" id="name" formControlName="name" type="text" placeholder="Name" />
+   </div>
+
+   <div class="mb-3">
+      <label for="email">Email</label>
+      <input class="form-control py-3" id="email" formControlName="email" type="email"
+         placeholder="example@gmail.com" />
+   </div>
+
+   <div class="mb-3">
+      <label for="phone">Phone</label>
+      <input class="form-control py-3" id="phone" formControlName="phone" type="text" placeholder="Phone number" />
+      <div class="mt-2" *ngIf="
+         accountForm.get('phone')?.errors &&
+         accountForm.get('phone')?.touched
+      ">
+         <p class="text-danger" *ngIf="accountForm.get('phone')?.getError('required')">
+            Hey there! phone is required. Please provide it!
+         </p>
+         <p class="text-danger" *ngIf="accountForm.get('phone')?.getError('pattern')">
+            Oops! Egypt Numbers Only. Check it out!
+         </p>
+      </div>
+   </div>
+
+   <button class="btn-main py-3" type="submit" [disabled]="accountForm.invalid">Save Details</button>
+
+</form>

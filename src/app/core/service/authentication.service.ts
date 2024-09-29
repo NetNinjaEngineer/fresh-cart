@@ -10,12 +10,15 @@ import { ForgetPasswordRequest } from '../interfaces/forgetPasswordRequest';
 import { ResetCodeRequest } from '../interfaces/resetCodeRequest';
 import { ResetPasswordRequest } from '../interfaces/resetPasswordRequest';
 import { environment } from '../../../environments/environment';
+import { ChangePasswordRequest } from '../interfaces/changePasswordRequest';
+import { UpdateProfileRequest } from '../interfaces/updateProfileRequest';
 
 @Injectable({
    providedIn: 'root',
 })
 export class AuthenticationService {
    private _baseUrl: string = `${environment.baseApiUrl}/api/v1/auth`;
+   private _baseUrlOfChange: string = `${environment.baseApiUrl}/api/v1/users/changeMyPassword`;
 
    constructor(
       private _client: HttpClient,
@@ -57,7 +60,7 @@ export class AuthenticationService {
    getCurrentUserInfo() {
       const token: any = localStorage.getItem('token');
       if (token != null) {
-         const decodedToken: JwtPayload = jwtDecode(token);
+         const decodedToken = jwtDecode(token);
          return decodedToken;
       }
 
@@ -75,5 +78,15 @@ export class AuthenticationService {
 
    resetPassword(resetPasswordRequest: ResetPasswordRequest): Observable<any> {
       return this._client.put(`${this._baseUrl}/resetPassword`, resetPasswordRequest);
+   }
+
+
+   changePassword(changePasswordRequest: ChangePasswordRequest): Observable<any> {
+      return this._client.put<any>(`${this._baseUrlOfChange}`, changePasswordRequest);
+   }
+
+
+   updateUserProfile(updateProfileRequest: UpdateProfileRequest): Observable<any> {
+      return this._client.put<any>(`${environment.baseApiUrl}/api/v1/users/updateMe`, updateProfileRequest);
    }
 }

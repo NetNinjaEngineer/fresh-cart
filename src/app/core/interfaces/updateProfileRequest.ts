@@ -1,6 +1,5 @@
-export interface User {
+export interface UpdateProfileRequest {
    name: string
-   role: string
    email: string
    phone: string
 }

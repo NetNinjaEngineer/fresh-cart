@@ -33,9 +33,7 @@ export class ProductService {
    }
 
    getSpecificProduct(id: string): Observable<any> {
-      return this._client.get<any>(`${this._baseUrl}/${id}`).pipe(
-         tap(response => console.log(response))
-      );
+      return this._client.get<any>(`${this._baseUrl}/${id}`);
    }
 
 }
