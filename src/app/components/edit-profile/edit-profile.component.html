@@ -28,6 +28,9 @@
       </div>
    </div>
 
-   <button class="btn-main py-3" type="submit" [disabled]="accountForm.invalid">Save Details</button>
+   <div class="d-flex align-items-center justify-content-between ">
+      <button class="btn-main py-3" type="submit" [disabled]="accountForm.invalid">Save Details</button>
+      <button (click)="resetForm()" class="btn btn-secondary py-3 w-25">Clear</button>
+   </div>
 
 </form>

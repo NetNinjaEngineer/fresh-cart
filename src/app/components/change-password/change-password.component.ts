@@ -33,11 +33,12 @@ export class ChangePasswordComponent {
 
          this._authService.changePassword(updatedDetails).subscribe({
             next: (response) => {
-               console.log(response);
-               this._toastrService.error();
+               if (response.message == 'success') {
+                  this._toastrService.success(`Welcome ${response.user.name}, Your password modified successfully.`);
+               }
             },
             error: (e: HttpErrorResponse) => {
-               this._toastrService.error();
+               this._toastrService.error(e.error.errors.msg);
             }
          })
       }

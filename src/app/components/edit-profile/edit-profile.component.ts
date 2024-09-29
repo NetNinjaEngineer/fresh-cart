@@ -45,4 +45,8 @@ export class EditProfileComponent {
          })
       }
    }
+
+   resetForm() {
+      this.accountForm.reset();
+   }
 }
